@@ -13,7 +13,10 @@ export default {
 
 </script>
 <style>
-* {
+@import '@/assets/css/style.css';
+@import '@/assets/css/font-awesome.min.css';
+
+s * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

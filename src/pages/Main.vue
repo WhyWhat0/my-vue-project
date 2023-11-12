@@ -1,8 +1,12 @@
 <template>
-    <div><my-button style="position: sticky;" @click="showDialog">
-            <slot>Нажмите сюда</slot>
+    <form @submit.prevent>
+        <my-button
+            class="fa fa-paper-plane"
+            style="align-self: flex-end;"
+            @click.stop="showDialog">
+            <slot></slot>
         </my-button>
-    </div>
+    </form>
     <div>
         <PostTGForm v-model:show="dialogVisible"></PostTGForm>
     </div>
@@ -24,4 +28,9 @@ export default {
     },
 }
 </script>
-<style scoped></style>
+<style>
+form {
+    display: flex;
+    flex-direction: column;
+}
+</style>

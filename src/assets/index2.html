@@ -1,6 +1,18 @@
-<template>
-    <div class="dialog" v-if="show" @click.stop="hideDialog">
-        <div @click.stop class="chat">
+<!DOCTYPE html>
+<html lang="en-ru">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="images/icon32.png">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My version</title>
+</head>
+
+<body>
+    <div class="main-window">
+        <div class="chat">
             <div class="chat-header">
                 <div class="chat-header-name-date">
                     <div class="chat-header-name">Alexander Zenchyk</div>
@@ -54,7 +66,7 @@
 
                     <div class="message-left ">
                         <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
+                            <img class="message-image" src="images/gifs/gif-1.gif">
                             <div class="message-body-date-seen">
                                 <div class="message-body-date">14:24</div>
                             </div>
@@ -63,7 +75,7 @@
 
                     <div class="message-left ">
                         <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
+                            <img class="message-image" src="images/gifs/gif-1.gif">
                             <div class="message-body-date-seen">
                                 <div class="message-body-date">14:24</div>
                             </div>
@@ -72,7 +84,7 @@
 
                     <div class="message-left ">
                         <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
+                            <img class="message-image" src="images/gifs/gif-1.gif">
                             <div class="message-body-date-seen">
                                 <div class="message-body-date">14:24</div>
                             </div>
@@ -81,7 +93,7 @@
 
                     <div class="message-left ">
                         <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
+                            <img class="message-image" src="images/gifs/gif-1.gif">
                             <div class="message-body-date-seen">
                                 <div class="message-body-date">14:24</div>
                             </div>
@@ -90,7 +102,7 @@
 
                     <div class="message-left ">
                         <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
+                            <img class="message-image" src="images/gifs/gif-1.gif">
                             <div class="message-body-date-seen">
                                 <div class="message-body-date">14:24</div>
                             </div>
@@ -99,7 +111,7 @@
 
                     <div class="message-left ">
                         <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
+                            <img class="message-image" src="images/gifs/gif-1.gif">
                             <div class="message-body-date-seen">
                                 <div class="message-body-date">14:24</div>
                             </div>
@@ -120,7 +132,7 @@
 
                     <div class="message-right ">
                         <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-2.gif">
+                            <img class="message-image" src="images/gifs/gif-2.gif">
                             <div class="message-body-date-seen">
                                 <div class="message-body-date">14:25</div>
                                 <div class="message-body-seen">
@@ -132,7 +144,7 @@
 
                     <div class="message-right ">
                         <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-3.gif">
+                            <img class="message-image" src="images/gifs/gif-3.gif">
                             <div class="message-body-date-seen">
                                 <div class="message-body-date">14:25</div>
                                 <div class="message-body-seen">
@@ -178,46 +190,8 @@
             </div>
 
         </div>
+
     </div>
-</template>
-<script>
-export default {
-    name: 'post-tg-form',
-    data() {
-        return {
+</body>
 
-        }
-    },
-    props: {
-        show: {
-            type: Boolean,
-            default: false
-        }
-    },
-    methods: {
-        hideDialog() {
-            this.$emit('update:show', false)
-        }
-    },
-}
-</script>
-<style>
-.dialog {
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background: rgba(197, 190, 190, 0.5);
-    position: fixed;
-    display: flex;
-}
-
-.dialog__content {
-    margin: auto;
-    background: white;
-    border-radius: 12px;
-    min-height: 50px;
-    min-width: 300px;
-    padding: 200px;
-}
-</style>
+</html>
