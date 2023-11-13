@@ -1,5 +1,5 @@
 .messages {
-  padding-top: 1%; 
+  padding-top: 1%;
   align-self: center;
   width: 100%;
   display: flex;
@@ -36,13 +36,13 @@
 .message-right {  
   margin-bottom: 1%;  
   margin-top: 1%;
-  max-width: 85%;
+  max-width: 75%;
   align-self: flex-end;
   margin-right: 9px;
   background-color: #2b5278;
   border-radius: 5px;
   display: inline-block;
-  padding: 10px 18px;
+  padding: 5px;
   position: relative;
   vertical-align: top;          
 }
@@ -62,13 +62,14 @@
 }
 .message-body-text{
   font-size: 80%;
- 
+  margin: 10px;
+  max-width: 80%;
 }
 .message-body{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  justify-content: space-around;
+  max-width: 100%;
 }
 .message-body-date-seen{
   align-self: flex-end; 
@@ -79,7 +80,7 @@
   
 }
 .message-body-date{
- padding-top: 10%;
+ padding-bottom: 3%;
  padding-right: 5px;
   font-size: 0.8em;
   color: #7f91a4;

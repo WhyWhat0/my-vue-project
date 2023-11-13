@@ -1,10 +1,12 @@
+
 <template>
     <div class="dialog" v-if="show" @click.stop="hideDialog">
         <div @click.stop class="chat">
             <div class="chat-header">
                 <div class="chat-header-name-date">
-                    <div class="chat-header-name">Alexander Zenchyk</div>
-                    <div class="chat-header-date">18.07.2020</div>
+                    <div class="chat-header-name">ChatGPT</div>
+                    <div class="chat-header-date">{{ myDate() }}
+                    </div>
                 </div>
                 <div class="chat-header-buttons">
                     <div class="chat-header-button">
@@ -13,179 +15,28 @@
                     <div class="chat-header-button">
                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                     </div>
+                    <div class="chat-header-button">
+                        <i class="fa fa-chevron-right" @click="goToBot"></i>
+                    </div>
                 </div>
             </div>
 
+            <PostMessages :messages="messages"></PostMessages>
+            <PostCreateForm @create="createMessage"></PostCreateForm>
 
-
-            <div class="chat-body">
-                <!-- /*_____________________*/ -->
-                <div class="messages">
-
-                    <div class="message-left ">
-                        <div class="message-body">
-                            <div class="message-body-text">Hello Zenchyk!</div>
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:22</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-right ">
-                        <div class="message-body">
-                            <div class="message-body-text">AIS, HIRE ME!</div>
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:23</div>
-                                <div class="message-body-seen">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-left ">
-                        <div class="message-body">
-                            <div class="message-body-text">Ohh!</div>
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:24</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-left ">
-                        <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:24</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-left ">
-                        <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:24</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-left ">
-                        <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:24</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-left ">
-                        <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:24</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-left ">
-                        <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:24</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-left ">
-                        <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-1.gif">
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:24</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-right ">
-                        <div class="message-body">
-                            <div class="message-body-text">YEAP! Thank you!</div>
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:25</div>
-                                <div class="message-body-seen">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-right ">
-                        <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-2.gif">
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:25</div>
-                                <div class="message-body-seen">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-right ">
-                        <div class="message-body">
-                            <img class="message-image" src="@/assets/images/gifs/gif-3.gif">
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:25</div>
-                                <div class="message-body-seen">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-left ">
-                        <div class="message-body">
-                            <div class="message-body-text">See you on monday!</div>
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:26</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="message-right ">
-                        <div class="message-body">
-                            <div class="message-body-text">Of course! I'm waiting!</div>
-                            <div class="message-body-date-seen">
-                                <div class="message-body-date">14:27</div>
-                                <div class="message-body-seen">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- /*_____________________*/ -->
-            <div class="chat-footer">
-                <div class="chat-footer-item">
-                    <i class="fa fa-paperclip fa-flip-horizontal fa-fw" aria-hidden="true"></i>
-                </div>
-                <div class="chat-footer-text-area"><textarea class="message-text" rows="1"
-                        placeholder="Write a message..."></textarea></div>
-                <div class="chat-footer-item">
-                    <i class="fa fa-paper-plane fa-fw" aria-hidden="true"></i>
-                </div>
-            </div>
 
         </div>
     </div>
 </template>
 <script>
+import PostMessages from "@/components/PostMessages.vue"
+import PostCreateForm from "@/components/PostCreateForm.vue"
 export default {
+    components: { PostMessages, PostCreateForm },
     name: 'post-tg-form',
     data() {
         return {
-
+            messages: [],
         }
     },
     props: {
@@ -195,10 +46,34 @@ export default {
         }
     },
     methods: {
+        goToBot() {
+            window.open('https://t.me/pancake1953bot')
+        },
         hideDialog() {
             this.$emit('update:show', false)
+        },
+        createMessage(message) {
+            this.messages.push(message);
+        },
+        myDate() {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            let mm = today.getMonth() + 1; // Months start at 0!
+            let dd = today.getDate();
+
+            if (dd < 10) dd = '0' + dd;
+            if (mm < 10) mm = '0' + mm;
+
+            const formattedToday = dd + '/' + mm + '/' + yyyy;
+            return formattedToday
         }
+
     },
+    mounted() {
+        const event = new Date();
+        console.log(event.toLocaleString('en-GB', { timeZone: 'UTC' }));
+        console.log(typeof Date())
+    }
 }
 </script>
 <style>
