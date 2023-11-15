@@ -12,10 +12,14 @@ export default {
   
 <style scoped>
 .btn {
-    padding: 10px 15px;
+    padding: 5px;
     background: none;
     color: teal;
-    border: 1px solid teal;
+    border: 2px solid teal;
+}
+
+.btn:hover {
+    background-color: aquamarine;
 }
 </style>
   

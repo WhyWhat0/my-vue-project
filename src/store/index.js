@@ -4,6 +4,7 @@ import { postModule } from './postModule'
 export default createStore({
   state: {
     isAuth: false,
+    currentMessage: 'Hello',
   },
   getters: {
     myTime(state) {
@@ -19,6 +20,9 @@ export default createStore({
 
   },
   mutations: {
+    setCurrentMessage(state, message){
+      state.currentMessage = message;
+    }
   },
   actions: {
   },

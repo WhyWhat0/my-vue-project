@@ -3,8 +3,17 @@
         <div class="chat-footer-item">
             <i class="fa fa-paperclip fa-flip-horizontal fa-fw" aria-hidden="true"></i>
         </div>
-        <div class="chat-footer-text-area"><textarea v-model="message.text" class="message-text" rows="1"
-                placeholder="Write a message..."></textarea></div>
+        <div class="chat-footer-text-area">
+            <textarea
+                v-model="message.text"
+                class="message-text" rows="1"
+                placeholder="Write a message..."
+                type="text"
+                @keydown.enter.prevent.exact="createMessage"
+                @keyup.ctrl.enter.prevent="newLine">
+
+        </textarea>
+        </div>
         <div class="chat-footer-item">
             <div
                 class="fa fa-paper-plane fa-fw"
@@ -24,7 +33,8 @@ export default {
                 text: '',
                 date: '',
                 files: '',
-            }
+            },
+
 
         }
     },
@@ -37,7 +47,14 @@ export default {
                 id: '',
                 text: '',
                 date: '',
+                files: ''
             }
+        },
+
+        newLine(e) {
+            let caret = e.target.selectionStart;
+            e.target.setRangeText("\n", caret, caret, "end");
+            this.message.text = e.target.value;
         }
     }
 }

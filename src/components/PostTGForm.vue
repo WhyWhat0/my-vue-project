@@ -1,6 +1,6 @@
 
 <template>
-    <div class="dialog" v-if="show" @click.stop="hideDialog">
+    <div class="dialog" v-if="show" @click="hideDialog">
         <div @click.stop class="chat">
             <div class="chat-header">
                 <div class="chat-header-name-date">
@@ -54,6 +54,7 @@ export default {
         },
         createMessage(message) {
             this.messages.push(message);
+
         },
         myDate() {
             const today = new Date();

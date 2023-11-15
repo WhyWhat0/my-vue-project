@@ -7,5 +7,31 @@
     position: fixed;
     display: flex;
   }
+.circle {
+  width: 50px; /* задаете свои размеры */
+  height: 50px;
+  border-radius: 50%; /* не забываем о кроссбраузерности */
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  }
+  .textformat{
+    white-space: pre-line;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+html {
+  
+}
 
   

@@ -2,10 +2,7 @@
     <div class="message-right">
         <div class="message-body">
             <div
-                class="message-body-text"
-                style="white-space: pre-line;
-                word-wrap: break-word;
-                overflow-wrap: break-word;">
+                class="message-body-text textformat">
                 {{ message.text }}
             </div>
             <div class="message-body-date-seen">

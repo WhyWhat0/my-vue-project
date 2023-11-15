@@ -1,6 +1,8 @@
 <template>
   <div class="app">
-    <router-view></router-view>
+    <div>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 <script>
@@ -16,11 +18,12 @@ export default {
 @import '@/assets/css/style.css';
 @import '@/assets/css/font-awesome.min.css';
 
-s * {
+/* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+}*/
+
 
 .app {
   padding: 20px;
