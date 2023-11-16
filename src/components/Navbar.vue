@@ -8,7 +8,7 @@
       <button
         @submit.prevent
         class="fa fa-paper-plane btn circle"
-        style="margin-left: 20px; font-size: 17px;"
+        style="margin-left: 20px; font-size: 17px; border-radius: 50%;"
         @click.stop="showDialog">
         <slot></slot>
       </button>
