@@ -5,6 +5,26 @@ const routes = [
     path: '/',
     component: Main
   },
+//   {
+//     path: '/posts',
+//     component: UserPage
+// },
+// {
+//     path: '/about',
+//     component: About
+// },
+// {
+//     path: '/posts/:id',
+//     component: PostIdPage
+// },
+// {
+//     path: '/store',
+//     component: PostPageWithStore
+// },
+// {
+//     path: '/composition',
+//     component: PostPageCompositionApi
+// },
   
 ]
 

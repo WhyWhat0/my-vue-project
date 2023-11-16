@@ -4,7 +4,7 @@ import { postModule } from './postModule'
 export default createStore({
   state: {
     isAuth: false,
-    currentMessage: 'Hello',
+    currentMessage: '',
   },
   getters: {
     myTime(state) {

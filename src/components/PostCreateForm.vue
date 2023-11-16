@@ -5,12 +5,13 @@
         </div>
         <div class="chat-footer-text-area">
             <textarea
-                v-model="message.text"
+                :value="currentMessage"
+                @input="updateCurrentMessage"
                 class="message-text" rows="1"
                 placeholder="Write a message..."
                 type="text"
                 @keydown.enter.prevent.exact="createMessage"
-                @keyup.ctrl.enter.prevent="newLine">
+                @keyup.ctrl.enter.prevent="newLine">{{ currentMessage }}
 
         </textarea>
         </div>
@@ -24,6 +25,7 @@
     </div>
 </template>
 <script>
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
     name: "post-create-form",
     data() {
@@ -39,10 +41,18 @@ export default {
         }
     },
     methods: {
+        ...mapMutations({
+            setCurrentMessage: 'setCurrentMessage',
+        }),
+        updateCurrentMessage(e) {
+            this.$store.commit('setCurrentMessage', e.target.value)
+        },
         createMessage() {
             this.message.id = Date.now();
             this.message.date = this.$store.getters.myTime;
+            this.message.text = this.currentMessage;
             this.$emit('create', this.message);
+            this.$store.commit('setCurrentMessage', '')
             this.message = {
                 id: '',
                 text: '',
@@ -56,7 +66,12 @@ export default {
             e.target.setRangeText("\n", caret, caret, "end");
             this.message.text = e.target.value;
         }
-    }
+    },
+    computed: {
+        ...mapState({
+            currentMessage: state => state.currentMessage,
+        })
+    },
 }
 </script>
 <style></style>
