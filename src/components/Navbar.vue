@@ -2,9 +2,9 @@
   <div class="navbar">
     <div class="navbar__btns">
       <my-button style="margin-left: 20px" @click="$router.push('/posts')">Посты</my-button>
-      <my-button style="margin-left: 20px" @click="$router.push('/about')">О сайте</my-button>
-      <my-button style="margin-left: 20px" @click="$router.push('/store')">store</my-button>
-      <my-button style="margin-left: 20px" @click="$router.push('/composition')">Composition</my-button>
+      <my-button style="margin-left: 20px" @click="$router.push('/about')">Еще посты</my-button>
+      <my-button style="margin-left: 20px" @click="$router.push('/store')">Тут тоже</my-button>
+      <my-button style="margin-left: 20px" @click="$router.push('/composition')">тут еще что-то</my-button>
       <button
         @submit.prevent
         class="fa fa-paper-plane btn circle"
