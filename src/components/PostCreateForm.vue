@@ -1,9 +1,9 @@
 <template>
     <div class="chat-footer">
         <div class="chat-footer-item">
-            <i class="fa fa-paperclip fa-flip-horizontal fa-fw" aria-hidden="true"></i>
+            <i class="fa fa-paperclip fa-flip-horizontal fa-fw" aria-hidden="true" style="font-size: 30px;"></i>
         </div>
-        <div class="chat-footer-text-area">
+        <div class="chat-footer-text-area" style="margin-left: 10px;">
             <textarea
                 :value="currentMessage"
                 @input="updateCurrentMessage"
@@ -15,7 +15,7 @@
 
         </textarea>
         </div>
-        <div class="chat-footer-item">
+        <div class="chat-footer-item" style="margin-right: 10px;">
             <div
                 class="fa fa-paper-plane fa-fw"
                 aria-hidden="true"
