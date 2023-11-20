@@ -61,9 +61,11 @@
   
 }
 .message-body-text{
-  font-size: 90%;
+  line-height: 1em;
+  font-size: 100%;
   margin: 10px;
   max-width: 80%;
+  text-align:end;
 }
 .message-body{
   display: flex;

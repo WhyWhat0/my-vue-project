@@ -2,7 +2,7 @@
     <div class="message-right">
         <div class="message-body">
             <div
-                class="message-body-text textformat">
+                class="message-body-text textformat large-font">
                 {{ message.text }}
             </div>
             <div class="message-body-date-seen">

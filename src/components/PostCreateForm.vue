@@ -4,16 +4,20 @@
             <i class="fa fa-paperclip fa-flip-horizontal fa-fw" aria-hidden="true" style="font-size: 30px;"></i>
         </div>
         <div class="chat-footer-text-area" style="margin-left: 10px;">
-            <textarea
-                :value="currentMessage"
-                @input="updateCurrentMessage"
-                class="message-text" rows="1"
-                placeholder="Write a message..."
-                type="text"
-                @keydown.enter.prevent.exact="createMessage"
-                @keyup.ctrl.enter.prevent="newLine">{{ currentMessage }}
+            <form @submit.prevent>
+                <textarea
+                    :value="currentMessage"
+                    @input="updateCurrentMessage"
+                    class="message-text"
+                    rows="1"
+                    style="font-size: 20px;"
+                    placeholder="Write a message..."
+                    type="text"
+                    @keydown.enter.prevent.exact="createMessage"
+                    @keyup.ctrl.enter.prevent="newLine">{{ currentMessage }}
+                </textarea>
+            </form>
 
-        </textarea>
         </div>
         <div class="chat-footer-item" style="margin-right: 10px;">
             <div
@@ -36,8 +40,6 @@ export default {
                 date: '',
                 files: '',
             },
-
-
         }
     },
     methods: {

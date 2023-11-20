@@ -6,12 +6,12 @@
       <my-button style="margin-left: 20px" @click="$router.push('/store')">Тут тоже</my-button>
       <my-button style="margin-left: 20px" @click="$router.push('/composition')">тут еще что-то</my-button>
       <button
-        @submit.prevent
         class="fa fa-paper-plane btn circle"
-        style="margin-left: 20px; font-size: 17px; border-radius: 50%;"
-        @click.stop="showDialog">
+        style="margin-left: 20px; border-radius: 50%;"
+        @click="showDialog">
         <slot></slot>
       </button>
+
       <div>
         <Transition>
           <PostTGForm v-model:show="dialogVisible"></PostTGForm>

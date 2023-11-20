@@ -4,8 +4,8 @@
         <div @click.stop class="chat">
             <div class="chat-header">
                 <div class="chat-header-name-date">
-                    <div class="chat-header-name">ChatGPT</div>
-                    <div class="chat-header-date">{{ myDate() }}
+                    <div class="chat-header-name large-font">ChatGPT</div>
+                    <div class="chat-header-date large-font">{{ myDate() }}
                     </div>
                 </div>
                 <div class="chat-header-buttons">
@@ -53,7 +53,9 @@ export default {
             this.$emit('update:show', false)
         },
         createMessage(message) {
-            this.messages.push(message);
+            if (message.text) {
+                this.messages.push(message);
+            }
 
         },
         myDate() {

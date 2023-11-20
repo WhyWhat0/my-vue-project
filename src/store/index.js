@@ -5,6 +5,7 @@ export default createStore({
   state: {
     isAuth: false,
     currentMessage: '',
+    size_footer_area: 8,
   },
   getters: {
     myTime(state) {
