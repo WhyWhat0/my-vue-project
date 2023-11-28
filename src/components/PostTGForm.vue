@@ -1,11 +1,11 @@
 
 <template>
-    <div class="dialog" v-if="show" @click="hideDialog">
+    <div v-if="show" @click="hideDialog">
         <div @click.stop class="chat">
             <div class="chat-header">
                 <div class="chat-header-name-date">
-                    <div class="chat-header-name large-font">ChatGPT</div>
-                    <div class="chat-header-date large-font">{{ myDate() }}
+                    <div class="chat-header-name">ChatGPT</div>
+                    <div class="chat-header-date ">{{ myDate() }}
                     </div>
                 </div>
                 <div class="chat-header-buttons">
@@ -74,8 +74,6 @@ export default {
     },
     mounted() {
         const event = new Date();
-        console.log(event.toLocaleString('en-GB', { timeZone: 'UTC' }));
-        console.log(typeof Date())
     }
 }
 </script>
@@ -88,14 +86,5 @@ export default {
     background: rgba(197, 190, 190, 0.5);
     position: fixed;
     display: flex;
-}
-
-.dialog__content {
-    margin: auto;
-    background: white;
-    border-radius: 12px;
-    min-height: 50px;
-    min-width: 300px;
-    padding: 200px;
 }
 </style>

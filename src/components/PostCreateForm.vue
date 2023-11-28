@@ -1,26 +1,26 @@
 <template>
     <div class="chat-footer">
         <div class="chat-footer-item">
-            <i class="fa fa-paperclip fa-flip-horizontal fa-fw" aria-hidden="true" style="font-size: 30px;"></i>
+            <i class="fa fa-paperclip fa-flip-horizontal fa-fw" aria-hidden="true" style="font-size: 25px;"></i>
         </div>
         <div class="chat-footer-text-area" style="margin-left: 10px;">
-            <form @submit.prevent>
-                <textarea
-                    :value="currentMessage"
-                    @input="updateCurrentMessage"
-                    class="message-text"
-                    rows="1"
-                    style="font-size: 20px;"
-                    placeholder="Write a message..."
-                    type="text"
-                    @keydown.enter.prevent.exact="createMessage"
-                    @keyup.ctrl.enter.prevent="newLine">{{ currentMessage }}
+            <textarea
+                @submit.prevent
+                :value="currentMessage"
+                @input="updateCurrentMessage"
+                class="message-text"
+                rows="1"
+                style="font-size: 16px;"
+                placeholder="Write a message..."
+                type="text"
+                @keydown.enter.prevent.exact="createMessage"
+                @keyup.ctrl.enter.prevent="newLine">{{ currentMessage }}
                 </textarea>
-            </form>
 
         </div>
         <div class="chat-footer-item" style="margin-right: 10px;">
             <div
+                style="font-size: 25px;"
                 class="fa fa-paper-plane fa-fw"
                 aria-hidden="true"
                 @click="createMessage">
@@ -76,4 +76,8 @@ export default {
     },
 }
 </script>
-<style></style>
+<style scoped>
+.fa {
+    font-size: small;
+}
+</style>

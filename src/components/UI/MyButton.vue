@@ -10,5 +10,20 @@ export default {
 }
 </script>
   
-<style scoped></style>
+<style>
+.btn {
+    margin: 20px;
+    padding: 5px;
+    background: none;
+    color: teal;
+    border: 3px solid teal;
+    border-radius: 7px;
+    transition: 0.6s linear;
+    font-size: large;
+}
+
+.btn:hover {
+    background-color: aqua;
+}
+</style>
   

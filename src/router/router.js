@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Main from "@/pages/Main"
+import About from "@/pages/About"
 const routes = [
   {
     path: '/',
@@ -9,10 +10,10 @@ const routes = [
 //     path: '/posts',
 //     component: UserPage
 // },
-// {
-//     path: '/about',
-//     component: About
-// },
+{
+    path: '/about',
+    component: About
+},
 // {
 //     path: '/posts/:id',
 //     component: PostIdPage

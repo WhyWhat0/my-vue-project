@@ -65,7 +65,7 @@
 .message-text{
     align-self: center;
     background-color:#17212b;  
-    padding-top: 0.5em;
+    /* padding-top: 0.5em; */
     border-width: 0;
     resize: none;   
     color: white;
@@ -89,7 +89,7 @@
     background: #242a33;
 }
 .chat-body:hover::-webkit-scrollbar-thumb {
-    background-color: #176dd0;   
+    background-color: #40454b;   
 }
 /*--------------------------
 ::-khtml-scrollbar {

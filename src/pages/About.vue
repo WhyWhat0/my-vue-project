@@ -5,7 +5,7 @@
         <Navbar></Navbar>
         <div v-intersection="showNavbar" class="observer"></div>
         <div class="dialog__content">
-            <p></p>
+            <p> Это приложение никому не нужно хнык </p>
         </div>
     </div>
 </template>
@@ -27,14 +27,8 @@ export default {
 }
 </script>
 <style scoped>
-.parent-element {
-    position: absolute;
-    overflow: visible;
-    height: 100%;
-}
-
 .image {
-    background: url('@/assets/images/images/photo.jpg') no-repeat center center fixed;
+    background: url('@/assets/images/images/1679426930_celes-club-p-fon-vindovs-khp-oboi-7.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -44,7 +38,7 @@ export default {
 .dialog__content {
     margin-left: auto;
     margin-right: auto;
-    background: lightblue;
+    background: rgb(16, 27, 95);
     max-width: 70%;
     min-height: 2000px;
     padding: 20px;
@@ -71,8 +65,6 @@ export default {
 .v-leave-to {
     opacity: 0;
 }
-
-
 
 .observer {
     height: 5px;

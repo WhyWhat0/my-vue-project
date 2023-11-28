@@ -47,14 +47,6 @@ body{
     overflow: hidden;
     border-radius: 8px;
 }   
-.dialog__content {
-    margin: auto;
-    background: white;
-    border-radius: 12px;
-    min-height: 50px;
-    min-width: 300px;
-    padding: 200px;
-}
 .chat-list{
     display: flex;
     flex-direction: column;

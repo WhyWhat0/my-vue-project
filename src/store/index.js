@@ -5,6 +5,8 @@ export default createStore({
   state: {
     isAuth: false,
     currentMessage: '',
+    dialogVisible: false,
+    navbarVisible: true,
     size_footer_area: 8,
   },
   getters: {
@@ -23,7 +25,13 @@ export default createStore({
   mutations: {
     setCurrentMessage(state, message){
       state.currentMessage = message;
-    }
+    },
+    setDialogVisible(state, a){
+      state.dialogVisible = a;
+    },
+    setNavbarVisible(state, a){
+      state.navbarVisible = a;
+    },
   },
   actions: {
   },

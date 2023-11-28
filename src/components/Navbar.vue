@@ -1,20 +1,44 @@
 <template>
-  <div class="navbar">
+  <div class="navbar"
+    v-if="!$store.state.navbarVisible">
     <div class="navbar__btns">
+      <MyButton style="margin-left: 20px;" @click="$router.push('/'); scrollToTop()">Главная</MyButton>
       <my-button style="margin-left: 20px" @click="$router.push('/posts')">Посты</my-button>
-      <my-button style="margin-left: 20px" @click="$router.push('/about')">Еще посты</my-button>
       <my-button style="margin-left: 20px" @click="$router.push('/store')">Тут тоже</my-button>
       <my-button style="margin-left: 20px" @click="$router.push('/composition')">тут еще что-то</my-button>
+      <my-button style="margin-left: 20px" @click="$router.push('/about'); scrollToTop()">Это что такое</my-button>
       <button
         class="fa fa-paper-plane btn circle"
-        style="margin-left: 20px; border-radius: 50%;"
+        style="margin-left: 16px; border-radius: 50%;"
+        @click="showDialog">
+        <slot></slot>
+      </button>
+
+      <div>
+        <Transition name="dial">
+          <PostTGForm v-model:show="$store.state.dialogVisible"></PostTGForm>
+        </Transition>
+      </div>
+    </div>
+  </div>
+  <div class="navbar2"
+    v-else>
+    <div class="navbar__btns">
+      <MyButton style="margin-left: 20px;" @click="$router.push('/'); scrollToTop()">Главная</MyButton>
+      <my-button style="margin-left: 20px" @click="$router.push('/posts')">Посты</my-button>
+      <my-button style="margin-left: 20px" @click="$router.push('/store')">Тут тоже</my-button>
+      <my-button style="margin-left: 20px" @click="$router.push('/composition')">тут еще что-то</my-button>
+      <my-button style="margin-left: 20px" @click="$router.push('/about'); scrollToTop()">Это что такое</my-button>
+      <button
+        class="fa fa-paper-plane btn circle"
+        style="margin-left: 16px; border-radius: 50%;"
         @click="showDialog">
         <slot></slot>
       </button>
 
       <div>
         <Transition>
-          <PostTGForm v-model:show="dialogVisible"></PostTGForm>
+          <PostTGForm v-model:show="$store.state.dialogVisible"></PostTGForm>
         </Transition>
       </div>
     </div>
@@ -28,29 +52,87 @@ import PostTGForm from "@/components/PostTGForm"
 export default {
   data() {
     return {
-      dialogVisible: false,
     }
   },
   components: { MyButton, PostTGForm },
   methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    },
     showDialog() {
-      this.dialogVisible = !this.dialogVisible;
+      this.$store.commit('setDialogVisible', !this.$store.state.dialogVisible);
+    },
+    showNavbar() {
+      this.$store.commit('setNavbarVisible', !this.$store.state.navbarVisible)
     },
   },
 }
 </script>
 
-<style scoped>
-.navbar {
+<style>
+.myheader {
+  position: fixed;
   height: 50px;
+  width: 80%;
+  top: 0;
+  left: 0;
+  background-color: #cc0000;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.navbar {
   background-color: lightgray;
-  box-shadow: 2px 2px 4px gray;
+  height: 50px;
+  width: 70%;
   display: flex;
   align-items: center;
   padding: 0 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  border-radius: 12px;
+}
+
+.navbar2 {
+  position: fixed;
+  background-color: lightgray;
+  height: 50px;
+  left: 16%;
+  width: 68%;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  border-radius: 12px;
 }
 
 .navbar__btns {
   margin-left: auto;
+  align-self: center;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
