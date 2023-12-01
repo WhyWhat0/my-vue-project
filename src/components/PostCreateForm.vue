@@ -39,6 +39,7 @@ export default {
                 text: '',
                 date: '',
                 files: '',
+                isMyMessage: true,
             },
         }
     },

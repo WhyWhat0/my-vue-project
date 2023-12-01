@@ -31,12 +31,12 @@
 <script>
 import PostMessages from "@/components/PostMessages.vue"
 import PostCreateForm from "@/components/PostCreateForm.vue"
+import { mapState } from "vuex"
 export default {
     components: { PostMessages, PostCreateForm },
     name: 'post-tg-form',
     data() {
         return {
-            messages: [],
         }
     },
     props: {
@@ -44,6 +44,11 @@ export default {
             type: Boolean,
             default: false
         }
+    },
+    computed: {
+        ...mapState({
+            messages: state => state.messages,
+        }),
     },
     methods: {
         goToBot() {

@@ -8,6 +8,7 @@ export default createStore({
     dialogVisible: false,
     navbarVisible: true,
     size_footer_area: 8,
+    messages: [],
   },
   getters: {
     myTime(state) {
