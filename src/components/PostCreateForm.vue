@@ -1,25 +1,22 @@
 <template>
-    <div class="chat-footer">
+    <div class="chat-footer" :style="{ height: this.chatFooterHeight + '%' }">
         <div class="chat-footer-item">
             <i class="fa fa-paperclip fa-flip-horizontal fa-fw" aria-hidden="true" style="font-size: 25px;"></i>
         </div>
         <div class="chat-footer-text-area" style="margin-left: 10px;">
             <textarea
+                v-focus
                 id="ta"
                 @submit.prevent
                 :value="currentMessage"
                 @input="updateCurrentMessage"
-                @mouseup="calculateHeight"
-                @keyup="calculateHeight"
-                @onmouseup="calculateHeight"
-                @onkeyup="calculateHeight"
                 class="message-text"
                 rows="1"
-                style="font-size: 16px; line-height: 16px;"
+                style="font-size: 16px; line-height: 20px;"
                 placeholder="Write a message..."
                 type="text"
                 @keydown.enter.prevent.exact="createMessage"
-                @keyup.ctrl.enter.prevent="newLine">{{ currentMessage }}
+                @keyup.ctrl.enter.prevent="newLine">
                 </textarea>
 
         </div>
@@ -35,8 +32,10 @@
 </template>
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
+import toggleMixin from "@/mixins/toggleMixin";
 export default {
     name: "post-create-form",
+    mixins: [toggleMixin],
     data() {
         return {
             message: {
@@ -46,22 +45,23 @@ export default {
                 files: '',
                 isMyMessage: true,
                 handlers: {
-                    mouseup: this.calculateHeight,
-                    keyup: this.calculateHeight,
-                    onmouseup: this.calculateHeight,
-                    onkeyup: this.calculateHeight,
-
+                    mouseup: "calculateHeight",
+                    keyup: "calculateHeight",
+                    onmouseup: "calculateHeight",
+                    onkeyup: "calculateHeight",
                 }
             },
         }
     },
+    mounted() {
+        this.changeFooterArea();
+    },
     methods: {
         ...mapMutations({
             setCurrentMessage: 'setCurrentMessage',
+            setSizeFooterArea: 'setSizeFooterArea',
         }),
-        mounted() {
-            this.calculateHeight();
-        },
+
         updateCurrentMessage(e) {
             this.$store.commit('setCurrentMessage', e.target.value)
         },
@@ -83,55 +83,32 @@ export default {
             let caret = e.target.selectionStart;
             e.target.setRangeText("\n", caret, caret, "end");
             this.message.text = e.target.value;
+            this.changeFooterArea(this.calculateHeight() + 1)
         },
-        calculateContentHeight(ta, scanAmount) {
-            var origHeight = ta.style.height,
-                height = ta.offsetHeight,
-                scrollHeight = ta.scrollHeight,
-                overflow = ta.style.overflow;
-            if (height >= scrollHeight) {
-                ta.style.height = (height + scanAmount) + 'px';
-                ta.style.overflow = 'hidden';
-                if (scrollHeight < ta.scrollHeight) {
-                    while (ta.offsetHeight >= ta.scrollHeight) {
-                        ta.style.height = (height -= scanAmount) + 'px';
-                    }
-                    while (ta.offsetHeight < ta.scrollHeight) {
-                        ta.style.height = (height++) + 'px';
-                    }
-                    ta.style.height = origHeight;
-                    ta.style.overflow = overflow;
-                    return height;
-                }
-            } else {
-                return scrollHeight;
-            }
-        },
-        calculateHeight() {
-            var ta = document.getElementById("ta"),
-                style = (window.getComputedStyle) ?
-                    window.getComputedStyle(ta) : ta.currentStyle,
-                taLineHeight = parseInt(style.lineHeight, 10),
-                taHeight = this.calculateContentHeight(ta, taLineHeight),
-                numberOfLines = Math.ceil(taHeight / taLineHeight) - 1;
+        changeFooterArea(col = this.calculateHeight()) {
+            this.$store.commit('setSizeFooterArea', col)
+        }
 
-            console.log(numberOfLines)
-        },
     },
     computed: {
         ...mapState({
             currentMessage: state => state.currentMessage,
+            sizeFooterArea: state => state.sizeFooterArea,
+            chatBodyHeight: state => state.chatBodyHeight,
+            chatFooterHeight: state => state.chatFooterHeight,
         })
     },
-    // watch: {
-    //     currentMessage() {
-    //         this.calculateHeight()
-    //     }
-    // }
+    watch: {
+        currentMessage() {
+            this.changeFooterArea()
+        },
+        sizeFooterArea() {
+            ta.rows = this.sizeFooterArea
+        }
+    }
 }
 </script>
-<style scoped>
-.fa {
-    font-size: small;
-}
+<style scoped>  .fa {
+      font-size: small;
+  }
 </style>

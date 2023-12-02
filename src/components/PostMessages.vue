@@ -1,5 +1,5 @@
 <template>
-    <div class="chat-body">
+    <div class="chat-body" :style="{ height: this.$store.state.chatBodyHeight + '%' }">
         <div class="messages">
             <transition-group name="user-list">
                 <MyMessage

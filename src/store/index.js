@@ -7,8 +7,10 @@ export default createStore({
     currentMessage: '',
     dialogVisible: false,
     navbarVisible: true,
-    size_footer_area: 8,
     messages: [],
+    sizeFooterArea: 1,
+    chatBodyHeight: 84,
+    chatFooterHeight: 8,
   },
   getters: {
     myTime(state) {
@@ -24,6 +26,15 @@ export default createStore({
 
   },
   mutations: {
+    setChatFooterHeight(state, size){
+      state.chatFooterHeight = size
+    },
+    setChatBodyHeight(state, size){
+      state.chatBodyHeight = size
+    },
+    setSizeFooterArea(state, size){
+      state.sizeFooterArea = size
+    },
     setCurrentMessage(state, message){
       state.currentMessage = message;
     },
