@@ -12,7 +12,7 @@
                 @input="updateCurrentMessage"
                 class="message-text"
                 rows="1"
-                style="font-size: 16px; line-height: 20px;"
+                style="font-size: 16px; line-height: 16px;"
                 placeholder="Write a message..."
                 type="text"
                 @keydown.enter.prevent.exact="createMessage"
@@ -54,7 +54,7 @@ export default {
         }
     },
     mounted() {
-        this.changeFooterArea();
+        this.changeFooterArea(1);
     },
     methods: {
         ...mapMutations({
@@ -85,7 +85,7 @@ export default {
             this.message.text = e.target.value;
             this.changeFooterArea(this.calculateHeight() + 1)
         },
-        changeFooterArea(col = this.calculateHeight()) {
+        changeFooterArea(col) {
             this.$store.commit('setSizeFooterArea', col)
         }
 
@@ -100,10 +100,26 @@ export default {
     },
     watch: {
         currentMessage() {
-            this.changeFooterArea()
+            this.changeFooterArea(this.calculateHeight())
+            console.log(this.calculateHeight())
         },
-        sizeFooterArea() {
-            ta.rows = this.sizeFooterArea
+        // sizeFooterArea() {
+        //     ta.rows = this.sizeFooterArea
+        //     this.$store.commit('chatFooterHeight', col)
+        //     this.$store.commit('chatBodyHeight', col)
+        // }
+        sizeFooterArea: {
+            handler: function (newValue, oldValue) {
+                ta.rows = this.sizeFooterArea
+                if (newValue > oldValue) {
+                    this.$store.commit('setChatBodyHeight', this.chatBodyHeight - 2)
+                    this.$store.commit('setChatFooterHeight', this.chatFooterHeight + 2)
+                }
+                else {
+                    this.$store.commit('setChatBodyHeight', this.chatBodyHeight + 2)
+                    this.$store.commit('setChatFooterHeight', this.chatFooterHeight - 2)
+                }
+            }
         }
     }
 }

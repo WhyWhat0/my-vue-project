@@ -29,7 +29,13 @@ export default {
                 window.getComputedStyle(ta) : ta.currentStyle,
             taLineHeight = parseInt(style.lineHeight, 10),
             taHeight = this.calculateContentHeight(ta, taLineHeight),
-            numberOfLines = Math.ceil(taHeight / taLineHeight) - 1;
+            numberOfLines = Math.ceil((taHeight) / taLineHeight)-1;
+
+            // console.log('numberOfLines =',numberOfLines, '\n',
+            // 'taHeight =',taHeight-1,'\n',
+            // 'taLineHeight =',taLineHeight,'\n',
+            // '(taHeight) / taLineHeight)-1 =',(taHeight-1) / taLineHeight, Math.ceil((taHeight-1) / taLineHeight),'\n',
+            // )
             return numberOfLines
         },
     } 

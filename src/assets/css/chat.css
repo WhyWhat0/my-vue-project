@@ -52,7 +52,8 @@
     color: gray;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
+    padding-bottom: 10px;
     font-size: 100%;   
 }
 .chat-footer-item:hover{
