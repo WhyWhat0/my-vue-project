@@ -110,16 +110,20 @@ export default {
         // }
         sizeFooterArea: {
             handler: function (newValue, oldValue) {
+                console.log(newValue, oldValue)
                 ta.rows = this.sizeFooterArea
-                if (newValue > oldValue) {
-                    this.$store.commit('setChatBodyHeight', this.chatBodyHeight - 2)
-                    this.$store.commit('setChatFooterHeight', this.chatFooterHeight + 2)
-                }
-                else {
-                    this.$store.commit('setChatBodyHeight', this.chatBodyHeight + 2)
-                    this.$store.commit('setChatFooterHeight', this.chatFooterHeight - 2)
-                }
+                const sizes = { footer: this.chatFooterHeight, body: this.chatBodyHeight }
+                this.$store.commit('setChatBodyHeight', 84 - 2 * (this.sizeFooterArea - 1))
+                this.$store.commit('setChatFooterHeight', 8 + 2 * (this.sizeFooterArea - 1))
+                // if (newValue > oldValue) {
+
+                // }
+                // else {
+                //     this.$store.commit('setChatBodyHeight', this.chatBodyHeight + 2 * (this.sizeFooterArea - 1))
+                //     this.$store.commit('setChatFooterHeight', this.chatFooterHeight - 2 * (this.sizeFooterArea - 1))
+                // }
             }
+
         }
     }
 }
