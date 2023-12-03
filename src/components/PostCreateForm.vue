@@ -71,6 +71,8 @@ export default {
             this.message.text = this.currentMessage;
             this.$emit('create', this.message);
             this.$store.commit('setCurrentMessage', '')
+            this.changeFooterArea(1)
+            this.changeDivArea()
             this.message = {
                 id: '',
                 text: '',
@@ -83,10 +85,15 @@ export default {
             let caret = e.target.selectionStart;
             e.target.setRangeText("\n", caret, caret, "end");
             this.message.text = e.target.value;
-            this.changeFooterArea(this.calculateHeight() + 1)
+            this.changeDivArea()
         },
         changeFooterArea(col) {
             this.$store.commit('setSizeFooterArea', col)
+        },
+        changeDivArea() {
+            ta.rows = this.sizeFooterArea
+            this.$store.commit('setChatBodyHeight', 84 - 2 * (this.sizeFooterArea - 1))
+            this.$store.commit('setChatFooterHeight', 8 + 2 * (this.sizeFooterArea - 1))
         }
 
     },
@@ -101,27 +108,10 @@ export default {
     watch: {
         currentMessage() {
             this.changeFooterArea(this.calculateHeight())
-            console.log(this.calculateHeight())
         },
-        // sizeFooterArea() {
-        //     ta.rows = this.sizeFooterArea
-        //     this.$store.commit('chatFooterHeight', col)
-        //     this.$store.commit('chatBodyHeight', col)
-        // }
         sizeFooterArea: {
             handler: function (newValue, oldValue) {
-                console.log(newValue, oldValue)
-                ta.rows = this.sizeFooterArea
-                const sizes = { footer: this.chatFooterHeight, body: this.chatBodyHeight }
-                this.$store.commit('setChatBodyHeight', 84 - 2 * (this.sizeFooterArea - 1))
-                this.$store.commit('setChatFooterHeight', 8 + 2 * (this.sizeFooterArea - 1))
-                // if (newValue > oldValue) {
-
-                // }
-                // else {
-                //     this.$store.commit('setChatBodyHeight', this.chatBodyHeight + 2 * (this.sizeFooterArea - 1))
-                //     this.$store.commit('setChatFooterHeight', this.chatFooterHeight - 2 * (this.sizeFooterArea - 1))
-                // }
+                this.changeDivArea()
             }
 
         }
