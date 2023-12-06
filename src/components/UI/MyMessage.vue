@@ -3,7 +3,7 @@
         <div class="message-body">
             <div
                 class="message-body-text textformat large-font">
-                {{ message.text }}
+                <p>{{ message.text }}</p>
             </div>
             <div class="message-body-date-seen">
                 <div class="message-body-date">{{ message.date }}</div>
