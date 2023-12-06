@@ -1,6 +1,8 @@
 <template>
-  <div class="navbar"
-    v-if="!$store.state.navbarVisible">
+  <div :class="{
+    'navbar2': $store.state.navbarVisible,
+    'navbar': !$store.state.navbarVisible
+  }">
     <div class="navbar__btns">
       <MyButton style="margin-left: 20px;" @click="$router.push('/'); scrollToTop()">Главная</MyButton>
       <my-button style="margin-left: 20px" @click="$router.push('/posts')">Посты</my-button>
@@ -16,28 +18,6 @@
 
       <div>
         <Transition name="dial">
-          <PostTGForm v-model:show="$store.state.dialogVisible"></PostTGForm>
-        </Transition>
-      </div>
-    </div>
-  </div>
-  <div class="navbar2"
-    v-else>
-    <div class="navbar__btns">
-      <MyButton style="margin-left: 20px;" @click="$router.push('/'); scrollToTop()">Главная</MyButton>
-      <my-button style="margin-left: 20px" @click="$router.push('/posts')">Посты</my-button>
-      <my-button style="margin-left: 20px" @click="$router.push('/store')">Тут тоже</my-button>
-      <my-button style="margin-left: 20px" @click="$router.push('/composition')">тут еще что-то</my-button>
-      <my-button style="margin-left: 20px" @click="$router.push('/about'); scrollToTop()">Это что такое</my-button>
-      <button
-        class="fa fa-paper-plane btn circle"
-        style="margin-left: 16px; border-radius: 50%;"
-        @click="showDialog">
-        <slot></slot>
-      </button>
-
-      <div>
-        <Transition>
           <PostTGForm v-model:show="$store.state.dialogVisible"></PostTGForm>
         </Transition>
       </div>
@@ -84,6 +64,7 @@ export default {
 .navbar {
   background-color: lightgray;
   height: 50px;
+  left: 15%;
   width: 70%;
   display: flex;
   align-items: center;
@@ -94,7 +75,14 @@ export default {
   border-radius: 12px;
 }
 
+.navbar-sticky {
+  position: fixed;
+  top: 10px;
+}
+
 .navbar2 {
+  position: fixed;
+  top: 10px;
   position: fixed;
   background-color: lightgray;
   height: 50px;
@@ -112,6 +100,16 @@ export default {
 .navbar__btns {
   margin-left: auto;
   align-self: center;
+}
+
+.dial-enter-active,
+.dial-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.dial-enter-from,
+.dial-leave-to {
+  opacity: 0;
 }
 
 .bounce-enter-active {

@@ -8,7 +8,17 @@
     display: flex;
   }
   
-
+  body::-webkit-scrollbar {
+    width: 8px;               /* ширина scrollbar */
+  }
+  body::-webkit-scrollbar-track {
+    background: gray;        /* цвет дорожки */
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: teal;    /* цвет плашки */
+    border-radius: 20px;       /* закругления плашки */
+    border: 3px solid lightgray;  /* padding вокруг плашки */
+  }
     
   
 .circle {
@@ -28,15 +38,7 @@
     overflow-wrap: break-word;
 }
 
-.dial-enter-active,
-.dial-leave-active {
-  transition: opacity 0.5s ease;
-}
 
-.dial-enter-from,
-.dial-leave-to {
-  opacity: 0;
-}
 .large-font{
   font-size: small
 }

@@ -16,7 +16,7 @@
                 placeholder="Write a message..."
                 type="text"
                 @keydown.enter.prevent.exact="createMessage"
-                @keyup.ctrl.enter.prevent="newLine">
+                @keydown.ctrl.enter.prevent="newLine">
                 </textarea>
 
         </div>
@@ -82,10 +82,12 @@ export default {
         },
 
         newLine(e) {
-            let caret = e.target.selectionStart;
-            e.target.setRangeText("\n", caret, caret, "end");
-            this.message.text = e.target.value;
-            this.changeDivArea()
+            this.changeFooterArea(this.calculateHeight() + 1)
+            setTimeout(() => {
+                e.target.value += '\n'
+                // let caret = e.target.selectionStart;
+                // e.target.setRangeText("\n", caret, caret, "end");
+            }, 1);
         },
         changeFooterArea(col) {
             this.$store.commit('setSizeFooterArea', col)

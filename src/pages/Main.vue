@@ -1,11 +1,10 @@
 <template>
     <!-- :style="{ backgroundImage: 'url(' + require('@/assets/images/images/photo.jpg') + ')', backgroundSize: 'cover' }" -->
-    <div class="image"
-        style="padding: 20px;">
+    <div class="image">
         <Navbar></Navbar>
         <div v-intersection="showNavbar" class="observer"></div>
         <div class="dialog__content">
-            <p></p>
+
         </div>
     </div>
 </template>
@@ -39,6 +38,7 @@ export default {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    padding: 20px;
 }
 
 .dialog__content {

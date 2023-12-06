@@ -36,6 +36,7 @@ export default {
             // 'taLineHeight =',taLineHeight,'\n',
             // '(taHeight) / taLineHeight)-1 =',(taHeight-1) / taLineHeight, Math.ceil((taHeight-1) / taLineHeight),'\n',
             // )
+            console.log(numberOfLines)
             return numberOfLines
         },
     } 
