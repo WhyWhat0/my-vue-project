@@ -12,7 +12,7 @@
                 @input="updateCurrentMessage"
                 class="message-text"
                 rows="1"
-                style="font-size: 16px; line-height: 16px;"
+                style="font-size: 16px; line-height: 20px;  overflow-y: scroll;"
                 placeholder="Write a message..."
                 type="text"
                 @keydown.enter.prevent.exact="createMessage"
@@ -95,8 +95,8 @@ export default {
         changeDivArea() {
             ta.rows = this.sizeFooterArea
             if (this.sizeFooterArea < 10) {
-                this.$store.commit('setChatBodyHeight', 84 - 2 * (this.sizeFooterArea - 1))
-                this.$store.commit('setChatFooterHeight', 8 + 2 * (this.sizeFooterArea - 1))
+                this.$store.commit('setChatBodyHeight', 84 - 3 * (this.sizeFooterArea - 1))
+                this.$store.commit('setChatFooterHeight', 8 + 3 * (this.sizeFooterArea - 1))
             }
 
         }
@@ -148,7 +148,7 @@ export default {
       resize: none;
 
       /* Firefox shows scrollbar on growth, you can hide like this. */
-      overflow: hidden;
+      /* overflow: hidden; */
   }
 
   .grow-wrap>textarea,
