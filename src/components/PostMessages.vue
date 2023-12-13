@@ -1,9 +1,16 @@
 <template>
     <div class="chat-body" :style="{ height: this.$store.state.chatBodyHeight + '%' }">
         <div class="messages">
-            <transition-group name="user-list">
+            <transition-group name="user-list" v-if="$store.state.messangerMode.bot">
                 <MyMessage
-                    v-for="message in messages"
+                    v-for="message in messagesBot"
+                    :message="message"
+                    :key="message.id">
+                </MyMessage>
+            </transition-group>
+            <transition-group name="user-list" v-if="$store.state.messangerMode.human">
+                <MyMessage
+                    v-for="message in messagesHuman"
                     :message="message"
                     :key="message.id">
                 </MyMessage>
@@ -18,10 +25,15 @@ import MyMessage from './UI/MyMessage.vue';
 export default {
     name: "post-messages",
     data() {
-        return {};
+        return {
+        };
     },
     props: {
-        messages: {
+        messagesBot: {
+            type: Array,
+            required: true,
+        },
+        messagesHuman: {
             type: Array,
             required: true,
         }

@@ -15,8 +15,8 @@
                 style="font-size: 16px; line-height: 20px;  overflow-y: scroll;"
                 placeholder="Write a message..."
                 type="text"
-                @keydown.enter.prevent.exact="createMessage"
-                @keydown.ctrl.enter.prevent="newLine">
+                @keydown.enter.prevent.exact="createMyMessage"
+                @keydown.shift.enter.prevent="newLine">
                 </textarea>
 
         </div>
@@ -25,7 +25,7 @@
                 style="font-size: 25px;"
                 class="fa fa-paper-plane fa-fw"
                 aria-hidden="true"
-                @click="createMessage">
+                @click="createMyMessage">
             </div>
         </div>
     </div>
@@ -33,9 +33,10 @@
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 import toggleMixin from "@/mixins/toggleMixin";
+import postGetApi from '@/mixins/postGetApi';
 export default {
     name: "post-create-form",
-    mixins: [toggleMixin],
+    mixins: [toggleMixin, postGetApi],
     data() {
         return {
             message: {
@@ -65,11 +66,12 @@ export default {
         updateCurrentMessage(e) {
             this.$store.commit('setCurrentMessage', e.target.value)
         },
-        createMessage() {
+        createMyMessage() {
             this.message.id = Date.now();
             this.message.date = this.$store.getters.myTime;
             this.message.text = this.currentMessage;
             this.$emit('create', this.message);
+            this.createPostMessage(this.message)
             this.$store.commit('setCurrentMessage', '')
             this.changeFooterArea(1)
             this.changeDivArea()
@@ -80,6 +82,7 @@ export default {
                 files: ''
             }
         },
+
 
         newLine(e) {
             this.changeFooterArea(this.calculateHeight() + 1)

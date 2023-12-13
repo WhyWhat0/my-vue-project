@@ -4,7 +4,7 @@
         <div @click.stop class="chat">
             <div class="chat-header">
                 <div class="chat-header-name-date">
-                    <div class="chat-header-name">ChatGPT</div>
+                    <div class="chat-header-name">{{ getMessageModeName }}</div>
                     <div class="chat-header-date ">{{ myDate() }}
                     </div>
                 </div>
@@ -12,31 +12,33 @@
                     <div class="chat-header-button">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </div>
-                    <div class="chat-header-button">
+                    <div class="chat-header-button" @click="changeModeMessange">
                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                     </div>
-                    <div class="chat-header-button">
-                        <i class="fa fa-chevron-right" @click="goToBot"></i>
+                    <div class="chat-header-button" @click="goToBot">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
 
-            <PostMessages :messages="messages"></PostMessages>
+            <PostMessages
+                :messagesBot="messagesBot"
+                :messagesHuman="messagesHuman">
+            </PostMessages>
             <PostCreateForm @create="createMessage"></PostCreateForm>
-
-
         </div>
     </div>
 </template>
 <script>
 import PostMessages from "@/components/PostMessages.vue"
 import PostCreateForm from "@/components/PostCreateForm.vue"
-import { mapState } from "vuex"
+import { mapState, mapGetters, mapMutations } from "vuex"
 export default {
     components: { PostMessages, PostCreateForm },
     name: 'post-tg-form',
     data() {
         return {
+
         }
     },
     props: {
@@ -47,19 +49,39 @@ export default {
     },
     computed: {
         ...mapState({
-            messages: state => state.messages,
+            messagesBot: state => state.messagesBot,
+            messagesHuman: state => state.messagesHuman,
+            messangerMode: state => state.messangerMode,
+            humanAssistantName: state => state.humanAssistantName
+        }),
+        ...mapGetters({
+            getMessageModeName: 'getMessageModeName'
         }),
     },
     methods: {
+
+        ...mapMutations({
+        }),
+
         goToBot() {
             window.open('https://t.me/pancake1953bot')
+        },
+        changeModeMessange() {
+            this.messangerMode.human = !this.messangerMode.human;
+            this.messangerMode.bot = !this.messangerMode.bot;
+            console.log(this.messangerMode.human, this.messangerMode.bot)
         },
         hideDialog() {
             this.$emit('update:show', false)
         },
         createMessage(message) {
             if (message.text) {
-                this.messages.push(message);
+                if (this.messangerMode.bot) {
+                    this.messagesBot.push(message);
+                }
+                else {
+                    this.messagesHuman.push(message);
+                }
             }
 
         },
@@ -91,5 +113,10 @@ export default {
     background: rgba(197, 190, 190, 0.5);
     position: fixed;
     display: flex;
+}
+
+.smth {
+    background: blue;
+    height: 10px;
 }
 </style>

@@ -7,12 +7,26 @@ export default createStore({
     currentMessage: '',
     dialogVisible: false,
     navbarVisible: true,
-    messages: [],
+    messagesBot: [],
+    messagesHuman:[],
+    humanAssistantName: 'какой-то чел',
     sizeFooterArea: 1,
     chatBodyHeight: 84,
     chatFooterHeight: 8,
+    messangerMode: {
+      human: false,
+      bot: true
+  }
   },
   getters: {
+    getMessageModeName(state) {
+      if (state.messangerMode.bot) {
+          return 'Бот'
+      }
+      else {
+          return state.humanAssistantName
+      }
+  },
     myTime(state) {
       const today = new Date();
       let hours = today.getHours();
@@ -25,7 +39,14 @@ export default createStore({
     }
 
   },
+  
   mutations: {
+    
+    changeModeMessange(state) {
+      state.messangerMode.human = !state.messangerMode.human;
+      state.messangerMode.bot = !state.messangerMode.bot;
+      console.log(state.messangerMode.human, state.messangerMode.bot)
+    },
     setChatFooterHeight(state, size){
       state.chatFooterHeight = size
     },

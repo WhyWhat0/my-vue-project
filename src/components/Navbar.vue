@@ -5,10 +5,9 @@
   }">
     <div class="navbar__btns">
       <MyButton style="margin-left: 20px;" @click="$router.push('/'); scrollToTop()">Главная</MyButton>
-      <my-button style="margin-left: 20px" @click="$router.push('/posts')">Посты</my-button>
-      <my-button style="margin-left: 20px" @click="$router.push('/store')">Тут тоже</my-button>
-      <my-button style="margin-left: 20px" @click="$router.push('/composition')">тут еще что-то</my-button>
-      <my-button style="margin-left: 20px" @click="$router.push('/about'); scrollToTop()">Это что такое</my-button>
+      <my-button style="margin-left: 20px" @click="$router.push('/link'); scrollToTop()">ит курсы яндекса</my-button>
+      <my-button style="margin-left: 20px" @click="$router.push('/choosecontent'); scrollToTop()">мади лучше</my-button>
+      <my-button style="margin-left: 20px" @click="$router.push('/about'); scrollToTop()">окно</my-button>
       <button
         class="fa fa-paper-plane btn circle"
         style="margin-left: 16px; border-radius: 50%;"

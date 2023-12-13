@@ -31,13 +31,11 @@ export default {
             taHeight = this.calculateContentHeight(ta, taLineHeight),
             numberOfLines = Math.ceil((taHeight) / taLineHeight)-2;
             ta.scrollHeight
-            console.log(ta),
             // console.log('numberOfLines =',numberOfLines, '\n',
             // 'taHeight =',taHeight-1,'\n',
             // 'taLineHeight =',taLineHeight,'\n',
             // '(taHeight) / taLineHeight)-1 =',(taHeight-1) / taLineHeight, Math.ceil((taHeight-1) / taLineHeight),'\n',
             // )
-            console.log(numberOfLines)
             return numberOfLines
         },
     } 
