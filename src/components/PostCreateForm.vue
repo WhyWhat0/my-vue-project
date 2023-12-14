@@ -72,6 +72,7 @@ export default {
             this.message.text = this.currentMessage;
             this.$emit('create', this.message);
             this.createPostMessage(this.message)
+            console.log(this.getMessage())
             this.$store.commit('setCurrentMessage', '')
             this.changeFooterArea(1)
             this.changeDivArea()
@@ -79,7 +80,8 @@ export default {
                 id: '',
                 text: '',
                 date: '',
-                files: ''
+                files: '',
+                isMyMessage: true,
             }
         },
 

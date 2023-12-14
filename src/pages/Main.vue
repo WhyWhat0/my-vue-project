@@ -47,10 +47,12 @@ export default {
 
             }
         },
+
+
+
+
     },
     mounted() {
-        // this.createPostMessage()
-        this.getMessage()
     }
 }
 </script>
