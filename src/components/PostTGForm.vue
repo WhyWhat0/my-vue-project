@@ -94,7 +94,7 @@ export default {
 
     },
     mounted() {
-        this.getPostAnswersList()
+        // this.getPostAnswersList()
     }
 }
 </script>

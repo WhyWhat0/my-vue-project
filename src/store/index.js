@@ -20,6 +20,9 @@ export default createStore({
   }
   },
   getters: {
+    getMessagesBot(state){
+      return state.messagesBot
+    },
     getMessageModeName(state) {
       if (state.messangerMode.bot) {
           return 'Бот'
@@ -74,10 +77,11 @@ export default createStore({
     },
   },
   actions: {
-    async getPostAnswersList({commit}) {
-      await axios.get(this.path)
+    async getPostAnswersList({commit, state}) {
+      await axios.get('http://localhost:5000/bot')
           .then((res) => {
             commit('setMessagesBot', res.data.answersList)
+            console.log(state.messagesBot)
           })
           .catch((error) => {
               // eslint-выключение следующей строки
