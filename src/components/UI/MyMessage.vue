@@ -1,12 +1,12 @@
 <template>
     <div :class="{
-        'message-right': message.isMyMessage,
-        'message-left': !message.isMyMessage
+        'message-mine': message.isMyMessage,
+        'message-bot': !message.isMyMessage
     }">
-        <div class="message-body">
+        <div class="message-body" id="block">
             <div
                 class="message-body-text textformat large-font">
-                <p>{{ message.text }}</p>
+                <p style="line-height:1.2em">{{ message.text }}</p>
             </div>
             <div class="message-body-date-seen">
                 <div class="message-body-date">{{ message.date }}</div>

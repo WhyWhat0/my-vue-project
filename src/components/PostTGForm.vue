@@ -33,7 +33,7 @@
 import PostMessages from "@/components/PostMessages.vue"
 import PostCreateForm from "@/components/PostCreateForm.vue"
 import postGetApi from "@/mixins/postGetApi"
-import { mapState, mapGetters, mapMutations } from "vuex"
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex"
 import axios from "axios"
 export default {
     components: { PostMessages, PostCreateForm },
@@ -61,7 +61,9 @@ export default {
         }),
     },
     methods: {
-
+        ...mapActions({
+            getPostAnswersList: 'getPostAnswersList'
+        }),
         ...mapMutations({
         }),
 
@@ -76,7 +78,7 @@ export default {
         hideDialog() {
             this.$emit('update:show', false)
         },
-        
+
         myDate() {
             const today = new Date();
             const yyyy = today.getFullYear();
@@ -92,7 +94,7 @@ export default {
 
     },
     mounted() {
-        const event = new Date();
+        this.getPostAnswersList()
     }
 }
 </script>

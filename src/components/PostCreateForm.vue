@@ -40,7 +40,6 @@ export default {
     data() {
         return {
             msg: '',
-            messagesCount: 0,
             path: 'http://localhost:5000/bot',
             message: {
                 id: '',
@@ -64,6 +63,7 @@ export default {
         ...mapMutations({
             setCurrentMessage: 'setCurrentMessage',
             setSizeFooterArea: 'setSizeFooterArea',
+            setMessagesCount: 'setMessagesCount'
         }),
 
         updateCurrentMessage(e) {
@@ -79,7 +79,7 @@ export default {
             this.changeFooterArea(1)
             this.changeDivArea()
             await axios.post(this.path, this.message)
-            this.messagesCount += 1
+            this.$store.commit('setMessagesCount', this.messagesCount + 1)
             // const answer = this.getPostMessage((this.messagesBot.length + 1) / 2 - 1)
             this.msg = await this.getPostMessage(this.messagesCount - 1)
             await this.pushMessage({
@@ -152,6 +152,7 @@ export default {
             messagesBot: state => state.messagesBot,
             messagesHuman: state => state.messagesHuman,
             messangerMode: state => state.messangerMode,
+            messagesCount: state => state.messagesCount
 
         })
     },

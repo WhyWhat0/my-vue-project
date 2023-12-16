@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import { postModule } from './postModule'
-
+import axios from 'axios'
 export default createStore({
   state: {
     isAuth: false,
@@ -13,6 +13,7 @@ export default createStore({
     sizeFooterArea: 1,
     chatBodyHeight: 84,
     chatFooterHeight: 8,
+    messagesCount: 0,
     messangerMode: {
       human: false,
       bot: true
@@ -47,8 +48,14 @@ export default createStore({
       state.messangerMode.bot = !state.messangerMode.bot;
       console.log(state.messangerMode.human, state.messangerMode.bot)
     },
+    setMessagesBot(state, list){
+      state.messagesBot = list
+    },
     setChatFooterHeight(state, size){
       state.chatFooterHeight = size
+    },
+    setMessagesCount(state, count){
+      state.messagesCount = count
     },
     setChatBodyHeight(state, size){
       state.chatBodyHeight = size
@@ -67,6 +74,16 @@ export default createStore({
     },
   },
   actions: {
+    async getPostAnswersList({commit}) {
+      await axios.get(this.path)
+          .then((res) => {
+            commit('setMessagesBot', res.data.answersList)
+          })
+          .catch((error) => {
+              // eslint-выключение следующей строки
+              console.error(error);
+          });
+  },
   },
   modules: {
     post: postModule

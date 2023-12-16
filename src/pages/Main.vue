@@ -13,6 +13,7 @@ import PostTGForm from "@/components/PostTGForm"
 import Navbar from "@/components/Navbar"
 import axios from "axios"
 import postGetApi from "@/mixins/postGetApi"
+import { mapActions } from "vuex"
 export default {
     components: { PostTGForm, Navbar },
     data() {
@@ -22,7 +23,9 @@ export default {
     },
     mixins: [postGetApi],
     methods: {
-
+        ...mapActions({
+            getPostAnswersList: 'getPostAnswersList'
+        }),
         showNavbar() {
             this.$store.commit('setNavbarVisible', !this.$store.state.navbarVisible)
         },
