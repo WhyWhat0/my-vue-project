@@ -33,14 +33,15 @@
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 import toggleMixin from "@/mixins/toggleMixin";
-import postGetApi from '@/mixins/postGetApi';
 import axios from 'axios';
 export default {
     name: "post-create-form",
-    mixins: [toggleMixin, postGetApi],
+    mixins: [toggleMixin],
     data() {
         return {
-            answer: '',
+            msg: '',
+            messagesCount: 0,
+            path: 'http://localhost:5000/bot',
             message: {
                 id: '',
                 text: '',
@@ -73,10 +74,22 @@ export default {
             this.message.date = this.$store.getters.myTime;
             this.message.text = this.currentMessage;
             this.message.isMyMessage = true
-            this.$emit('create', this.message);
+            this.pushMessage(this.message)
             this.$store.commit('setCurrentMessage', '')
             this.changeFooterArea(1)
             this.changeDivArea()
+            await axios.post(this.path, this.message)
+            this.messagesCount += 1
+            // const answer = this.getPostMessage((this.messagesBot.length + 1) / 2 - 1)
+            this.msg = await this.getPostMessage(this.messagesCount - 1)
+            await this.pushMessage({
+                id: Date.now(),
+                date: this.$store.getters.myTime,
+                text: this.msg,
+                isMyMessage: false,
+                files: ''
+            })
+            console.log(this.msg, (this.messagesCount - 1))
             this.message = {
                 id: '',
                 text: '',
@@ -84,12 +97,31 @@ export default {
                 files: '',
                 isMyMessage: '',
             }
-            await axios.post(this.path, this.message)
-            const answer = this.getPostMessage((this.messagesBot.length + 1) / 2 - 1)
-            console.log(answer)
         },
+        pushMessage(message) {
+            if (message.text) {
+                if (this.messangerMode.bot) {
+                    this.messagesBot.push(message);
+                }
+                else {
+                    this.messagesHuman.push(message);
+                }
 
+            }
 
+        },
+        async getPostMessage(id = 0) {
+            await axios.get(this.path)
+                .then((res) => {
+                    this.msg = res.data.answersList[id];
+                })
+                .catch((error) => {
+                    // eslint-выключение следующей строки
+                    console.error(error);
+                });
+            console.log(this.msg, 'inside')
+            return this.msg
+        },
         newLine(e) {
             this.changeFooterArea(this.calculateHeight() + 1)
             setTimeout(() => {
@@ -118,6 +150,8 @@ export default {
             chatBodyHeight: state => state.chatBodyHeight,
             chatFooterHeight: state => state.chatFooterHeight,
             messagesBot: state => state.messagesBot,
+            messagesHuman: state => state.messagesHuman,
+            messangerMode: state => state.messangerMode,
 
         })
     },

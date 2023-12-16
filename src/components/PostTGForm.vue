@@ -25,7 +25,7 @@
                 :messagesBot="messagesBot"
                 :messagesHuman="messagesHuman">
             </PostMessages>
-            <PostCreateForm @create="createMessage"></PostCreateForm>
+            <PostCreateForm></PostCreateForm>
         </div>
     </div>
 </template>
@@ -76,18 +76,7 @@ export default {
         hideDialog() {
             this.$emit('update:show', false)
         },
-        createMessage(message) {
-            if (message.text) {
-                if (this.messangerMode.bot) {
-                    this.messagesBot.push(message);
-                }
-                else {
-                    this.messagesHuman.push(message);
-                }
-
-            }
-
-        },
+        
         myDate() {
             const today = new Date();
             const yyyy = today.getFullYear();

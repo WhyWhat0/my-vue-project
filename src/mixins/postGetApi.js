@@ -7,19 +7,6 @@ export default {
         }
     },
     methods:{
-        async getPostMessage(id=0) {
-            await axios.get(this.path)
-        .then((res) => {
-          this.msg = res.data.answersList[id];
-        })
-        .catch((error) => {
-          // eslint-выключение следующей строки
-          console.error(error);
-        });
-            return this.msg
-          },
-
-
         async createPostMessage(data){await axios.post(this.path, data)},
 
 
