@@ -32,13 +32,15 @@
 <script>
 import PostMessages from "@/components/PostMessages.vue"
 import PostCreateForm from "@/components/PostCreateForm.vue"
+import postGetApi from "@/mixins/postGetApi"
 import { mapState, mapGetters, mapMutations } from "vuex"
+import axios from "axios"
 export default {
     components: { PostMessages, PostCreateForm },
     name: 'post-tg-form',
+    mixins: [postGetApi],
     data() {
         return {
-
         }
     },
     props: {
@@ -82,6 +84,7 @@ export default {
                 else {
                     this.messagesHuman.push(message);
                 }
+
             }
 
         },

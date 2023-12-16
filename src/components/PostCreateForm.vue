@@ -34,11 +34,13 @@
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 import toggleMixin from "@/mixins/toggleMixin";
 import postGetApi from '@/mixins/postGetApi';
+import axios from 'axios';
 export default {
     name: "post-create-form",
     mixins: [toggleMixin, postGetApi],
     data() {
         return {
+            answer: '',
             message: {
                 id: '',
                 text: '',
@@ -66,12 +68,12 @@ export default {
         updateCurrentMessage(e) {
             this.$store.commit('setCurrentMessage', e.target.value)
         },
-        createMyMessage() {
+        async createMyMessage() {
             this.message.id = Date.now();
             this.message.date = this.$store.getters.myTime;
             this.message.text = this.currentMessage;
+            this.message.isMyMessage = true
             this.$emit('create', this.message);
-            this.createPostMessage(this.message)
             this.$store.commit('setCurrentMessage', '')
             this.changeFooterArea(1)
             this.changeDivArea()
@@ -80,8 +82,11 @@ export default {
                 text: '',
                 date: '',
                 files: '',
-                isMyMessage: true,
+                isMyMessage: '',
             }
+            await axios.post(this.path, this.message)
+            const answer = this.getPostMessage((this.messagesBot.length + 1) / 2 - 1)
+            console.log(answer)
         },
 
 
@@ -112,6 +117,8 @@ export default {
             sizeFooterArea: state => state.sizeFooterArea,
             chatBodyHeight: state => state.chatBodyHeight,
             chatFooterHeight: state => state.chatFooterHeight,
+            messagesBot: state => state.messagesBot,
+
         })
     },
     watch: {

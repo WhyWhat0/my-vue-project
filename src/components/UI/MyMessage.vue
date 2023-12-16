@@ -1,5 +1,8 @@
 <template>
-    <div class="message-right">
+    <div :class="{
+        'message-right': message.isMyMessage,
+        'message-left': !message.isMyMessage
+    }">
         <div class="message-body">
             <div
                 class="message-body-text textformat large-font">

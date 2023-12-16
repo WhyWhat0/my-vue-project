@@ -2,35 +2,25 @@ import axios from 'axios';
 export default {
     data(){
         return{
+            msg: '',
             path: 'http://localhost:5000/bot'
         }
     },
     methods:{
-        getMessage() {
-            axios.get(
-                this.path,
-                {
-                    headers:{
-                        'Access-Control-Allow-Origin': '*'
-                    }
-                }
-                )
-              .then((res) => {
-                this.msg = res.data;
-              })
-              .catch((error) => {
-                // eslint-выключение следующей строки
-              });
-              return this.msg
+        async getPostMessage(id=0) {
+            await axios.get(this.path)
+        .then((res) => {
+          this.msg = res.data.answersList[id];
+        })
+        .catch((error) => {
+          // eslint-выключение следующей строки
+          console.error(error);
+        });
+            return this.msg
           },
 
 
-          createPostMessage(data){
-            axios.post(
-                this.path, 
-                data, 
-                )            
-        },
+        async createPostMessage(data){await axios.post(this.path, data)},
 
 
         async createSberToken() {
